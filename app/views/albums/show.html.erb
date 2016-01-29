@@ -1,0 +1,24 @@
+<h1><%= @album.album_name %></h1>
+<p><%= @album.live_record ? "Live Recording" : "Studio Recording" %></p>
+<form action="<%= new_album_track_url(@album) %>" method="post">
+  <input type="hidden" name="_method" value="get">
+
+  <input  name="authenticity_token"
+          value="<%= form_authenticity_token %>"
+          type="hidden">
+
+   <input type="submit" value="Add a track!">
+</form>
+<% our_band = @album.band %>
+<br>
+<%= link_to "Back to #{our_band.band_name}", band_url(our_band) %>
+<br>
+<form action="<%= album_url(@album) %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+
+  <input  name="authenticity_token"
+          value="<%= form_authenticity_token %>"
+          type="hidden">
+
+   <input type="submit" value="Delete this album">
+</form>
